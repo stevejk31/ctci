@@ -1,13 +1,12 @@
 # descibe hwo you can use a single array to implement three stacks
 class ThreeInOne
-  attr_reader :stack, :location, :length
-  def initialize(length, count)
-    @stack = Array.new(length * count) {nil}
-    @location = Array.new(count)
-    count.times do |num|
-      @location[num] = length * num
+  def initialize(length_stack, number_stacks)
+    @stack = Array.new(length_stack * number_stacks) {nil}
+    @location = Array.new(number_stacks)
+    number_stacks.times do |num|
+      @location[num] = length_stack * num
     end
-    @length = length
+    @length = length_stack
   end
 # 1st 2nd 3rd stack
   def push(stack, value)
@@ -25,7 +24,12 @@ class ThreeInOne
   end
 
   def peak(stack)
+    raise "Not a Valid Stack" unless valid_stack?(stack)
+    raise "No Output" if empty?(stack)
+    @stack[@location[stack-1]-1]
+  end
 
+  def resize
   end
 
   def valid_stack?(stack)
