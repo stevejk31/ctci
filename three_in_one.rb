@@ -1,12 +1,13 @@
 # descibe hwo you can use a single array to implement three stacks
 class ThreeInOne
   def initialize(length_stack, number_stacks)
-    @stack = Array.new(length_stack * number_stacks) {nil}
+    @length = length_stack
+    @num_stacks = number_stacks
+    @stack = Array.new(@length * @num_stacks) {nil}
     @location = Array.new(number_stacks)
-    number_stacks.times do |num|
+    @num_stacks.times do |num|
       @location[num] = length_stack * num
     end
-    @length = length_stack
   end
 # 1st 2nd 3rd stack
   def push(stack, value)
@@ -30,10 +31,13 @@ class ThreeInOne
   end
 
   def resize
+    @length = @length * max
+    new_stack = Array.new(@length * @num_stacks) {nil}
+    #TODO resize
   end
 
   def valid_stack?(stack)
-    stack > 0 && stack <= @length
+    stack > 0 && stack <= @num_stacks
   end
 
   def empty?(stack)
