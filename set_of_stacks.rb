@@ -7,25 +7,22 @@
 # Implement a function popAt(int index) which performs a pop operation on a specific sub-stack).
 
 class SetOfStacks
-  attr_accessor :current_stack, :current_index, :current_stack
+  attr_accessor :set_stacks, :current_index, :max_size
   def initialize(size)
     @max_size = size
-    @current_stack = Array.new
-    @set_stacks = Array.new
-    @current_index = 0
+    @current_stack = []
+    @set_stacks = []
   end
 
   def push(value)
     require 'byebug'; debugger
 
-    resize_up! if @current_index % @max_size == 0
-    @current_index +=1
+    resize_up! if @current_stack.length >= @max_size
     @current_stack.push(value)
   end
 
   def pop
-    resize_down! if @current_index % @max_size == 0
-    @current_index -=1
+    resize_down! if @current_stack.length == 0
     @current_stack.pop
   end
 
@@ -38,6 +35,7 @@ class SetOfStacks
   end
 
   def resize_down!
+    raise "Stack is Empty" if @set_stacks.empty?
     @current_stack = @set_stacks.pop
   end
 end
