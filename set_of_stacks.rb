@@ -15,10 +15,9 @@ class SetOfStacks
   end
 
   def push(value)
-    require 'byebug'; debugger
-
     resize_up! if @current_stack.length >= @max_size
     @current_stack.push(value)
+    value
   end
 
   def pop
@@ -26,7 +25,9 @@ class SetOfStacks
     @current_stack.pop
   end
 
-  def pop_at(stack)
+  def pop_at(stack = input - 1)
+    raise "This Stack is Empty" if @set_stacks[stack].empty?
+    @set_stacks[stack].pop
   end
 
   def resize_up!
@@ -36,6 +37,8 @@ class SetOfStacks
 
   def resize_down!
     raise "Stack is Empty" if @set_stacks.empty?
-    @current_stack = @set_stacks.pop
+    while @current_stack.empty?
+      @current_stack = @set_stacks.pop
+    end
   end
 end
