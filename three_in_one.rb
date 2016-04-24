@@ -1,4 +1,4 @@
-# descibe hwo you can use a single array to implement three stacks
+# descibe how you can use a single array to implement three stacks
 class ThreeInOne
   def initialize(length_stack, number_stacks)
     @length = length_stack
