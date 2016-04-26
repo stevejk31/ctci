@@ -22,3 +22,4 @@ def sort_stack! (stack, input_length = 0)
   end
   sort_stack!(stack, input_length + 1)
 end
+#If unlimited stacks available we can do a mergesort or quicksort algorithm
