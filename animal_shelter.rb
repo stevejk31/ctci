@@ -8,6 +8,7 @@
 require 'Time'
 
 class AnimalShelter
+  attr_reader :dog_queue, :cat_queue
   def initialize
     @dog_queue = []
     @cat_queue = []
@@ -24,11 +25,16 @@ class AnimalShelter
   end
 
   def dequeue_cat
+    raise "No more cats" if @cat_queue.empty?
     @cat_queue.shift
   end
 
   def dequeue_dog
+    raise "No more dogs" if @dog_queue.empty?
     @dog_queue.shift
+  end
+
+  def dequeue_any
   end
 
 end
@@ -43,3 +49,9 @@ class Animal
   end
 
 end
+as = AnimalShelter.new
+["Andy","Steve","Sarah","Sara","Andrew","Brian","Tim","Frank"].each do |name|
+  as.enqueue(Animal.new(name,["Cat","Dog"].sample))
+end
+p as.cat_queue
+p as.dog_queue
