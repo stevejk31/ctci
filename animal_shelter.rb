@@ -4,6 +4,9 @@
 # that type). They cannot select which specific animal they would like. Create the data structures to
 # maintain this system and implement operations such as enqueue, dequeueAny, dequeueDog,
 # and dequeueCat. You may use the built-in LinkedList data structure.
+
+require 'Time'
+
 class AnimalShelter
   def initialize
     @dog_queue = []
@@ -11,12 +14,12 @@ class AnimalShelter
   end
   #push and shift
 
-  def enqueue(animal, time)
-
+  def enqueue(animal)
+    raise "Not a valid animal" unless animal.class == Animal
     if animal.animal_type == "Cat"
-      @cat_queue.push([animal, time])
+      @cat_queue.push([animal, Time.now])
     else
-      @dog_queue.push([animal,time])
+      @dog_queue.push([animal,Time.now])
     end
   end
 
