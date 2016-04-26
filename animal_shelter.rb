@@ -23,6 +23,14 @@ class AnimalShelter
     end
   end
 
+  def dequeue_cat
+    @cat_queue.shift
+  end
+
+  def dequeue_dog
+    @dog_queue.shift
+  end
+
 end
 
 class Animal
