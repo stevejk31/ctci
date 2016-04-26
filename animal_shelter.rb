@@ -26,15 +26,29 @@ class AnimalShelter
 
   def dequeue_cat
     raise "No more cats" if @cat_queue.empty?
-    @cat_queue.shift
+    @cat_queue.shift[0]
   end
 
   def dequeue_dog
     raise "No more dogs" if @dog_queue.empty?
-    @dog_queue.shift
+    @dog_queue.shift[0]
   end
 
   def dequeue_any
+    if @cat_queue.empty? && @dog_queue.empty?
+      raise "No more pets"
+    elsif @cat_queue.empty?
+      dequeue_dog
+    elsif @dog_queue.empty?
+      dequeue_cat
+    else
+      if @dog_queue.first[1] > @cat_queue.first[1]
+        dequeue_cat
+      else
+        dequeue_dog
+      end
+    end
+
   end
 
 end
@@ -49,9 +63,3 @@ class Animal
   end
 
 end
-as = AnimalShelter.new
-["Andy","Steve","Sarah","Sara","Andrew","Brian","Tim","Frank"].each do |name|
-  as.enqueue(Animal.new(name,["Cat","Dog"].sample))
-end
-p as.cat_queue
-p as.dog_queue
