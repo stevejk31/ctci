@@ -15,7 +15,7 @@ def minimal_tree(array)
   mid_node = Node.new(mid)
   mid_node.insert(less_node) if less_node
   mid_node.insert(more_node) if more_node
-  
+
   mid_node
 end
 
