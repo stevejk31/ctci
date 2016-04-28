@@ -14,6 +14,14 @@ def route_between_nodes_dfs(node, end_node, visited_nodes = [])
 end
 
 def route_between_nodes_bfs(start_node, end_node)
+  queue = [] #push shift
+  queue.push(start_node.children)
+  until queue.empty?
+    current_node = queue.shift
+    return true if current_node == end_node
+    queue.concat(filter_common(current_node.children, queue))
+  end
+  false
 
 end
 
