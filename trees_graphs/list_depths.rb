@@ -14,7 +14,11 @@ class LinkedList
   end
 
   def delete(node)
-    nod.prev.next = nil
+    if node == @tail
+      @tail = @tail.prev
+    end
+    node.prev.next = nil
+    node.prev = nil
   end
 
 
