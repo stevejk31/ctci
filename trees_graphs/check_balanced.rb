@@ -1,5 +1,10 @@
 def check_balance(node)
-  (depth(node.less) - depth(node.more)).abs < 2
+  return true if node.nil?
+  if (depth(node.less) - depth(node.more)).abs < 2
+    check_balance(node.less) && check_balance(node.more)
+  else
+    return false
+  end
 end
 
 
