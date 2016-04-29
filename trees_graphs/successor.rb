@@ -10,11 +10,32 @@
 # /\
 #2 7
 
-# next node must be right node or parent
+# left most on right side of tree or least value based on parents
 def successor(node)
-  if node.more && node.more.value < node.parent.value
-    node.more
+  min_parent = min_value_root(node.parent, node.value)
+  left_most = left_most(node.more)
+  if min_parent
+    min_parent.value < left_most.parent ? min_parent : left_most
   else
-    node.parent
+    left_most
   end
+end
+
+def left_most(node)
+  return node if node.less.nil?
+  left_most(node.less)
+end
+
+def min_value_root(node, min, max = nil)
+  if node.value > min
+    if max.nil?
+      max = node
+    elsif max.value > node.value
+      max = node
+    end
+  end
+
+  return max if node.parent.nil?
+
+  min_value_root(node.parent, min, max)
 end
