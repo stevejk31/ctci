@@ -29,6 +29,7 @@
 
 def dependencies(projects, dependencies)
   project_hash = {}
+  build_order = []
   projects.each do |project|
     project_hash[project] = Node.new(project)
   end
@@ -36,14 +37,29 @@ def dependencies(projects, dependencies)
     project_hash[dependency[1]].children.push(dependecy[0])
   end
   queue = []
-  project_hash.each do |project, node|
-    queue.push(project) if node.children.empty?
-  end
   # built queue with nodes w/o children
-  # until queue empty?
+  queue.concat(nodes_without_dependency(projects_hash))
+
+  until queue.empty?
+    build_order.push(queue.shift)
+    queue.concat(projects_hash, [build_order.last])
     # build nodes w/o children && remove children from built nodes
 
+  end
 
+  projects_hash ? false : build_order  
+
+end
+
+def nodes_without_dependency(projects_hash, comp = [])
+  queue = []
+  project_hash.each do |project, node|
+    if node.children == comp
+      queue.push(project)
+      projects_hash.delete(project)
+    end
+  end
+  queue
 end
 
 class Node
