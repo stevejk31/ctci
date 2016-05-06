@@ -1,3 +1,6 @@
+# Design the data structures for a generic deck of cards. Explain how you would
+# subclass the data structures to implement blackjack.
+
 SUITS = [:clubs, :diamonds, :hearts, :spades]
 VALUES = ["A",2,3,4,5,6,7,8,9,10,"J","Q","K"]
 class Card
@@ -33,3 +36,5 @@ class Deck
     @deck.pop
   end
 end
+
+#create hand classes
