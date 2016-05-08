@@ -7,44 +7,7 @@
 # Write a program to move the disks from the first tower to the last using stacks
 
 # [[3,2,1],[],[]] => [[],[3,2,1],[]] OR [[],[],[3,2,1]]
-# def hanoi_solver(disks)
-#   start_pos = 0
-#   end_pos = 1
-#   other_pos = 2
-#   until disks[0].empty?
-#     hanoi_solver_helper(disks, start_pos, end_pos, other_pos)
-#     move(disks, 0, other_pos) unless disks[0].empty?
-#     start_pos, end_pos, other_pos = end_pos, other_pos, start_pos
-#   end
-#   hanoi_solver_helper(disks, start_pos, end_pos, other_pos)
-#
-# end
-#
-# def hanoi_solver_helper(disks, start_pos, end_pos, other_pos)
-#   p [start_pos, other_pos, end_pos]
-#   # start -> end
-#   move(disks, start_pos, end_pos)
-#   p disks
-#   # start -> mid
-#   move(disks, start_pos, other_pos)
-#   p disks
-#   # end -> mid
-#   move(disks, end_pos, other_pos)
-#   p disks
-#   # start -> end
-#   move(disks, start_pos, end_pos)
-#   p disks
-#   # mid -> start
-#   move(disks, other_pos, start_pos)
-#   p disks
-#   # mid -> end
-#   move(disks, other_pos, end_pos)
-#   p disks
-#   # start -> end
-#   move(disks, start_pos, end_pos)
-#   p disks
-#
-# end
+# reference app academy repository for Object oriented Hanoi
 
 def solve_hanoi(disks, origin, dest, buffer, n = disks[0].length)
   return disks if n <= 0
