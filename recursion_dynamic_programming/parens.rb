@@ -3,7 +3,8 @@
 
 # EXAMPLE
 # Input: 3
-# Output: ((())), (()()), (())(), ()()(), ()(())
+<<<<<<< HEAD
+# Output: ((())), (()()), (())(), ()()(), ()()
 
 # EXAMPLE
 # Input: 2
@@ -22,3 +23,6 @@ def parens(num_parens)
   end
   result
 end
+=======
+# Output: ((())), (()()), (())(), ()()()
+>>>>>>> parent of fc23735... parens solved
