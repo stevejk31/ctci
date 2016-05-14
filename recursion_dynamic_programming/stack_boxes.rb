@@ -1,4 +1,4 @@
-# You have a stack of n boxes, with widths wi, heights hi, and hepths di. The boxes
+  # You have a stack of n boxes, with widths wi, heights hi, and hepths di. The boxes
 # cannont be rotated and can only be stacked on top of one another if each box in the sack is strictly
 # larger than the box above it in width, height, and depth. Implement a method to compute the
 # height of the tallest possible stack. The height of a stack is the sum of the heights of each box.
@@ -29,6 +29,7 @@ end
 
 def compare_width_depth(prev_box, new_box)
   return prev_box if new_box.nil?
+  return new_box if prev_box.nil?
   prev_box.width < new_box.width && prev_box.depth < new_box.depth
 end
 
@@ -40,7 +41,7 @@ def remove_min!(boxes)
   p boxes
   height = boxes[0].height
   result = []
-  until boxes[0].height != height
+  until boxes[0].nil? || boxes[0].height != height
     result.push(boxes.shift)
   end
   result
