@@ -2,32 +2,25 @@
 # so that none of them share the same row, column, or diagonal. in this case, "diagonal" means all
 # diagonals, not just the two that bisect the board
 
-def insert_queen(row=0, columns=(0..7).to_a, valid_pos = {},queens = [])
-  return queens if queens.length == 8
-  if queens.length == 7
-    pos = [row, columns[0]]
-    if queens.all? {|queen_pos|(queen_pos[0].abs - pos[0].abs).abs != (queen_pos[1] - pos[1].abs).abs}
-      queens.push(pos)
-      require 'byebug'; debugger
-    end
-    return queens if queens.length == 8
-  end
+def eight_queens(row=0, columns=(0..7).to_a, valid_pos = {},queens = [])
+  return [queens] if queens.length == 8
+  result = []
   columns.each do |col|
     pos = [row, col]
     temp_valid_pos = valid_pos.clone
     temp_queens = queens.clone
     temp_columns = columns.clone
-    if check_valid?(pos, temp_valid_pos)
+    if temp_queens.all? {|queen_pos|(queen_pos[0].abs - pos[0].abs).abs != (queen_pos[1] - pos[1].abs).abs}
       temp_queens.push(pos)
       col_insert(pos, temp_valid_pos)
       row_insert(pos, temp_valid_pos)
       diagonal_insert(pos, temp_valid_pos)
-      p queens
       temp_columns.delete(col)
-      insert_queen(row+1, temp_columns, temp_valid_pos, temp_queens)
+      new_queens =  eight_queens(row+1, temp_columns, temp_valid_pos, temp_queens)
+      result += new_queens unless new_queens.empty?
     end
   end
-  nil
+  result.uniq
 end
 
 def check_valid?(pos, valid_pos)
