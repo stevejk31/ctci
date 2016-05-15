@@ -33,12 +33,5 @@ def sorted_merge_better(array1, array2)
     last_idx -= 1
   end
 
-  # if idx1 < 0
-  #   until last_idx <= 0
-  #     array1[last_idx] = array2.pop
-  #     last_idx -= 1
-  #   end
-  # end
-
   array1
 end
