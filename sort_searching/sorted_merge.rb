@@ -25,7 +25,7 @@ def sorted_merge_better(array1, array2)
   until array2.empty?
     if array1[idx1].nil? || array2.last >= array1[idx1]
       array1[last_idx] = array2.pop
-    else
+      else
       array1[last_idx], array1[idx1] = array1[idx1], array1[last_idx]
       idx1 -= 1
     end
