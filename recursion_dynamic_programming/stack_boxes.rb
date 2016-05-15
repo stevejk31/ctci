@@ -9,10 +9,13 @@ def stack_boxes(boxes, stack = [])
   boxes = sort_boxes_height(boxes)
   max_height = calculate_height(stack)
   current_boxes = remove_min!(boxes)
+  #initial case for not adding smallest box
   temp_max_height = stack_boxes(boxes, stack)
   if temp_max_height > max_height
     max_height = temp_max_height
   end
+
+  #loop throuh to find ideal box at each height resitrction
   until current_boxes.empty?
     temp_stack = stack.clone
     current_box = current_boxes.shift
