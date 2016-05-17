@@ -19,7 +19,6 @@ def peaks_valleys(array)
     idx += 1
     last_idx -= 1
   end
-
   result
 end
 
