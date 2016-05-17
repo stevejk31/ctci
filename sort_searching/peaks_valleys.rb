@@ -28,10 +28,11 @@ def sort_valley_peak(array)
   idx = 1
   while idx < array.length-1
     biggest_idx = max_index(array, idx-1, idx, idx + 1)
-    idx += 2
+    p biggest_idx
     if idx != biggest_idx
       swap(array, idx, biggest_idx)
     end
+    idx += 2
   end
   array
 end
@@ -41,8 +42,16 @@ def swap(array, idx, idx2)
 end
 
 def max_index(array, idx1, idx2, idx3)
-  max_num = [array[idx1], array[idx2], array[idx3]].max
-  return idx1 if max_num == array[idx1]
-  return idx2 if max_num == array[idx2]
-  return idx2 if max_num == array[idx3]
+  temp_array = []
+  temp_array.push(array[idx1]) if array[idx1]
+  temp_array.push(array[idx2]) if array[idx2]
+  temp_array.push(array[idx3]) if array[idx3]
+  max_num = temp_array.max
+  if array[idx1] == max_num
+    idx1
+  elsif array[idx2] == max_num
+    idx2
+  elsif array[idx3] == max_num
+    idx3
+  end
 end
