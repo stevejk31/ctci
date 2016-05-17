@@ -25,16 +25,12 @@ class Node
         self.more=node
       end
     when 0
-      if @less
-        @less.insert(node)
+      if @more
+        @more.insert(node)
       else
-        self.less=node
+        self.more=node
       end
     end
-  end
-
-  def inspect
-    p [@value, @less.value, @more.value]
   end
 
   def less=(node)

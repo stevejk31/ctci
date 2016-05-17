@@ -2,7 +2,7 @@
 # order, write a method to find an element.
 
 require_relative 'binary_search.rb'
-
+# not a valid solutions 
 def sorted_matrix_search(matrix, target, mid_idx = matrix.length/2)
   return nil if matrix.empty?
   return binary_search(matrix[0], target) if matrix.length == 1
