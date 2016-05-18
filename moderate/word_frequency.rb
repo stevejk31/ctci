@@ -19,3 +19,29 @@ def word_frequency(input_word)
 
   count
 end
+
+
+class WordCounter
+  def initialize(book_filename)
+    @word_count = Hash.new { |hash, key| hash[key] = 0 }
+    File.readlines(book_filename).each do |line|
+      words = parse_line(line)
+      words.each do |word|
+        @word_count[word] += 1
+      end
+    end
+
+    def word_frequency(input_word)
+      @word_count[input_word]
+    end
+
+
+    private
+
+    def parse_line(line)
+      line.strip.split(" ").map do |word|
+        word = word.gsub(/\W+/, '')
+        word.downcase
+      end
+    end
+  end
