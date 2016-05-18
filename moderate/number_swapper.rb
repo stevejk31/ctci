@@ -6,10 +6,10 @@ def swap(a, b)
   [a,b]
 end
 
-def swap(a,b)
+def swap2(a,b)
   a = a+b
   b = a+b  #a+2b
   a = b-a
-  b = b-2a
+  b = b-2*a
   [a,b]
 end
