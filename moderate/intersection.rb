@@ -12,14 +12,21 @@ def intersection(line1, line2)
   x1b, y1b = line1[1]
   x2a, y2a = line2[0]
   x2b, y2b = line2[1]
-  slope1 = (y1a- y1b).to_f / (x1a - x1b).to_f
-  slope2 = (y2a- y2b).to_f / (x2a - x2b).to_f
+  slope1 = (y1b-y1a).to_f / (x1b-x1a).to_f
+  slope2 = (y2b-y2a).to_f / (x2b-x2a).to_f
+  if slope1 == slope2
+    #paralell
+    
+  else
+    #interesecting
+
+  end
   # if between?([x1a,x1b], [x2a, y2a]) && between?([y1a, y1b], [y2a,y2b])
 end
 
 def between?(array1, array2)
   a,b = array1
-  b,c = array2
-  a.between(b,c)
+  c,d = array2
+  a.between(c,d) || b.between(c,d)
 
 end
