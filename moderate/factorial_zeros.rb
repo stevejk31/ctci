@@ -20,6 +20,14 @@ def bf_trailing_zero(n)
 end
 
 def trailing_zero_factorial(n)
+  return 0 if n < 5
+  count =0
+  (4..n).each do |num|
+    until num < 5
+      count +=1 if num % 5 == 0
+      num = num.to_f/5
+    end
+  end
 
-
+  count
 end
