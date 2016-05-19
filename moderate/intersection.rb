@@ -13,20 +13,32 @@ def intersection(line1, line2)
   x2a, y2a = line2[0]
   x2b, y2b = line2[1]
   slope1 = (y1b-y1a).to_f / (x1b-x1a).to_f
+  y_intercept1 = y1a - x1a * slope1
   slope2 = (y2b-y2a).to_f / (x2b-x2a).to_f
+  y_intercept2 = y2a - x2a *slope2
   if slope1 == slope2
     #paralell
-    
+
   else
     #interesecting
-
+    intersection = calc_intersection(slope1, y_intercept1, slope2, y_intercept2)
+    return intersection if between?(intersection, [x1a, x1b], [y1a, y1b]) && between?(intersection, [x2a, x2b], [y2a,y2b])
   end
-  # if between?([x1a,x1b], [x2a, y2a]) && between?([y1a, y1b], [y2a,y2b])
+  false
 end
 
-def between?(array1, array2)
-  a,b = array1
-  c,d = array2
-  a.between(c,d) || b.between(c,d)
+def between?(point, x_range, y_range)
+  x = point[0]
+  y = point[1]
+  x1, x2 = x_range.sort
+  y1, y2 = y_range.sort
 
+  x.between?(x1,x2) && y.between?(y1,y2)
+
+end
+
+def calc_intersection(slope1, intercept1, slope2, intercept2)
+  x = (intercept1 - intercept2).to_f / (slope2 - slope1).to_f
+  y = slope1*x + intercept1
+  [x,y]
 end
