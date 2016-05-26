@@ -35,16 +35,42 @@ TENS = {
   9 => "ninety",
 }
 
+ILLION = {
+  4 => "thousand",
+  5 => "thousand",
+  6 => "thousand",
+  7 => "million",
+  8 => "million",
+  9 => "million",
+  10 => "billion",
+  11 => "billion",
+  12 => "billion",
+  13 => "trillion",
+  14 => "trillion",
+  15 => "trillion"
+}
+
+ILLION_STRING = {
+  "thousand" => 1000,
+  "million" => 1_000_000,
+  "billion" => 1_000_000_000,
+  "trillion" => 1_000_000_000_000
+}
+
 def english_int(num)
-  current_illion = num / 1000
-  current_num = num % 1000
   result = []
-  while current_illion > 0
-    hundreds(current_num)
-    current_illion = num / 1000
-    current_num = num % 1000
+  result.push(illion(num))
+
+  while current_illion >= 3
+
   end
   result.join(" ")
+end
+
+def illion(num)
+  illion_string = ILLION[num.to_s.length]
+  current_num = hundreds(num/(ILLION_STRING[illion_string]))
+  [current_num, illion_string].join(" ") if current_num
 end
 
 def hundreds(num)
