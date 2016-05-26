@@ -69,7 +69,7 @@ def english_int(num)
     current_illion = ILLION_STRING[ILLION[current_num.to_s.length]]
     current_num = current_num % current_illion
   end
-  current_string = hundreds(num)
+  current_string = hundreds(current_num)
   result.push(current_string) if current_string
   result.join(" ")
 end
