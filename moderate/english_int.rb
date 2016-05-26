@@ -59,11 +59,15 @@ ILLION_STRING = {
 
 def english_int(num)
   result = []
+  current_illion = ILLION_STRING[ILLION[num.to_s.length]]
   result.push(illion(num))
-
-  while current_illion >= 3
-
+  current_num = num % current_illion
+  while current_num > 0
+    result.push(illion(num))
+    current_illion = ILLION_STRING[ILLION[current_num.to_s.length]]
+    current_num = current_num % current_illion
   end
+  result.push(hundreds(current_num))
   result.join(" ")
 end
 
