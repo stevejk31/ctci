@@ -25,21 +25,57 @@ ZERO_NINETEEN = {
 }
 
 TENS = {
-  20 => "twenty",
-  30 => "thirty",
-  40 => "fourty",
-  50 => "fifty",
-  60 => "sixty",
-  70 => "seventy",
-  80 => "eighty",
-  90 => "ninety",
+  2 => "twenty",
+  3 => "thirty",
+  4 => "fourty",
+  5 => "fifty",
+  6 => "sixty",
+  7 => "seventy",
+  8 => "eighty",
+  9 => "ninety",
 }
 
 def english_int(num)
-  length = num.to_s.length
-  current_length = length % 3
-  current_num = num.to_s.split("").take(current_length).join("")
+  current_illion = num / 1000
+  current_num = num % 1000
+  result = []
+  while current_illion > 0
+    hundreds(current_num)
+    current_illion = num / 1000
+    current_num = num % 1000
+  end
+  result.join(" ")
+end
 
+def hundreds(num)
+  hundred = num /100
+  ten = num % 100
+  if hundred != 0
+    hundred_string = ZERO_NINETEEN[hundred]
+    hundred_string = "#{hundred_string} hundred"
+  end
+  if ten != 0
+    if ten < 20
+      ten_string = ZERO_NINETEEN[ten]
+    else
+      one = ten % 10
+      ten = ten / 10
+      if ten > 0  && one > 0
+        ten_string = "#{TENS[ten]} #{ZERO_NINETEEN[one]}"
+      elsif ten > 0
+        ten_string = "#{TENS[ten]}"
+      elsif one > 0
+        ten_string = "#{ZERO_NINETEEN[one]}"
+      end
+    end
+  end
+  if hundred_string && ten_string
+    [hundred_string, ten_string].join(" ")
+  elsif hundred_string
+    hundred_string
+  elsif ten_string
+    ten_string
+  end
 end
 
 def zero_nineteen(num)
