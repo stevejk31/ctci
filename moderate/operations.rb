@@ -16,10 +16,18 @@ def multiply(num1, num2)
 end
 
 def subtract(num1, num2)
+  result = 0
+  until num1 == (num2 + result)
+    result +=1
 
+  end
+  result
 end
 
 def divide(num1, num2)
-
-
+  result = 0
+  until num1 == (multiply(num2, result))
+    result +=1
+  end
+  result
 end
