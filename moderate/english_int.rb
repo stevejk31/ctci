@@ -110,7 +110,3 @@ def hundreds(num)
     ten_string
   end
 end
-
-def zero_nineteen(num)
-  ZERO_NINETEEN[num]
-end
