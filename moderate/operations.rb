@@ -30,8 +30,9 @@ end
 
 def divide(num1, num2)
   result = 0
-  until num1 == (multiply(num2, result))
+  until num1 < num2
+    num1 = subtract(num1, num2)
     result +=1
   end
-  result
+  [result, num1]
 end
