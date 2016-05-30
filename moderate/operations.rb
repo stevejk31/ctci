@@ -15,13 +15,17 @@ def multiply(num1, num2)
   result
 end
 
-def subtract(num1, num2)
-  result = 0
-  until num1 == (num2 + result)
-    result +=1
-
+def negative(num)
+  if num > 0
+    "-#{num}".to_f
+  elsif num < 0
+    "#{num}"[1..-1].to_f
   end
-  result
+
+end
+
+def subtract(num1, num2)
+  num1 + negative(num2)
 end
 
 def divide(num1, num2)
