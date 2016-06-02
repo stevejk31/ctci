@@ -19,7 +19,7 @@ def diving_board(planks, num_planks)
   until longer_planks < 0 || shorter_planks > shorter.length
     result.push([longer_planks, shorter_planks])
     longer_planks -= 1
-    shorter_planks -= 1
+    shorter_planks += 1
   end
   result
 end
@@ -32,13 +32,4 @@ class Plank
     @length = length
   end
 
-end
-
-planks = []
-10.times do
-  if rand(2) == 1
-    planks.push(Plank.new(:longer))
-  else
-    planks.push(Plank.new(:shorter))
-  end
 end
