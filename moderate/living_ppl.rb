@@ -12,30 +12,42 @@ def most_alive_brute_force(people)
     end
   end
   most_alive_year = ppl_hash.max_by{|year, count| count }
+  p ppl_hash.sort_by {|k,v| k}
   most_alive_year.first
 end
 
 def most_alive(people)
+  births = []
+  deaths = []
   people.each do |person|
     births.push(person.birth)
     deaths.push(person.death)
   end
   births.sort!
   deaths.sort!
-  births_hash = Hash.new { |hash, key| hash[key] = 0 }
+  birth_idx = 0
+  death_idx = 0
   alive = 0
-  births.each do |year|
-    alive += 1
-    births_hash[year] = alive
+  max_alive = 0
+  max_year = 0
+  while birth_idx < births.length
+    if births[birth_idx] < deaths[death_idx]
+      alive += 1
+      birth_idx += 1
+    elsif deaths[death_idx] > births[birth_idx]
+      alive -= 1
+      death_idx += 1
+    else
+      birth_idx += 1
+      death_idx += 1
+    end
+    if alive > max_alive
+      max_year = births[birth_idx]
+      max_alive = alive
+    end
   end
-  deaths_hash = Hash.new { |hash, key| hash[key] = 0 }
-  death.each do |year|
-    death += 1
-    deaths_hash[year] = death
-  end
-  (1900..2000).each do |year|
 
-  end
+  max_year
 end
 
 class Person
@@ -47,13 +59,12 @@ class Person
 end
 
 ppl = []
-20.times do
+500.times do
   birth = 1900 + rand(100)
   death = 1901 + rand(99)
   if birth < death
     ppl.push(Person.new(birth, death))
   end
 end
-
-
+puts most_alive_brute_force(ppl)
 puts most_alive(ppl)
