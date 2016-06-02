@@ -10,8 +10,8 @@ def most_alive(people)
       ppl_hash[year] += 1
     end
   end
-  most_alive_year = hash.max_by{|year, count| count }
-  most_alive_year
+  most_alive_year = ppl_hash.max_by{|year, count| count }
+  most_alive_year.first
 end
 
 class Person
@@ -21,3 +21,15 @@ class Person
     @death = death
   end
 end
+
+ppl = []
+20.times do
+  birth = 1900 + rand(100)
+  death = 1901 + rand(99)
+  if birth < death
+    ppl.push(Person.new(birth, death))
+  end
+end
+
+
+puts most_alive(ppl)
