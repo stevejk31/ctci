@@ -1,16 +1,18 @@
 # Given two squares on a two-dimensional plane, find a line that would cut these
 # two squares in half. Assume that the top and the bottom sides of the square run
 # parallel to the x-axis.
+
 def bisect_square(square1, square2)
   center1 = center_square(square1)
   center2 = center_square(square2)
-  line_function(square1, square2)
+  line_function(center1, center2)
 end
+# returns slope, intercept
 
 def center_square(square)
   pt1 = square.left_top
   pt2 = square.right_bottom
-  [(pt1[0]+pt2[0])/2, (pt1[1]+pt2[1])/2)]
+  [(pt1[0]+pt2[0])/2, (pt1[1]+pt2[1])/2]
 end
 
 # returns [slope, intercept]
