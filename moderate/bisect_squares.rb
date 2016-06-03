@@ -19,7 +19,11 @@ end
 def line_function(pt1, pt2)
   x1, y1 = pt1
   x2, y2 = pt2
-  slope = (y2-y1).to_f / (x2-x1).to_f
+  if pt1 == pt2
+    slope = (y2-y1).to_f / (x2-x1).to_f
+  else
+    slope = 1
+  end
   y_intercept = y1 - x1 * slope
   [slope, y_intercept]
 end
