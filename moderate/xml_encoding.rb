@@ -24,7 +24,7 @@ def encoding(xml)
     nodes.shift
     result = []
     nodes.each do |node|
-      if node[0,2] == "/"
+      if node[0] == "/"
         result.push("0")
       else
         result.concat(encoding_line(node))
@@ -53,17 +53,17 @@ def encoding_line(line)
   line.split("").each_with_index do |char, idx|
     if char == " " || char == "=" || (char == "\"" && value)
       if value
-        words.push(word)
+        words.push(word) unless word.length == 0
         value = false
       else
-        words.push(ATTR[word])
+        words.push(ATTR[word]) unless ATTR[word].nil?
       end
       word = ""
     elsif char == "\""
-      p "it's a value"
       value = true
     elsif char == ">"
-      words.push(line[idx+1..-1])
+      words.push(0)
+      words.push(line[idx+1..-1]) unless idx+1 == line.length
       break
     else
       word += char
@@ -72,4 +72,4 @@ def encoding_line(line)
   words
 end
 
-encoding(blah)
+# puts encoding(blah) == "1 4 McDowell 5 CA 0 2 3 Gayle 0 Some Message 0 0"
