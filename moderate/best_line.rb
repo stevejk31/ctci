@@ -4,7 +4,8 @@
 def best_line(points)
   mean_x, mean_y = mean(points)
   slope = find_slope(mean_x, mean_y, points)
-
+  y_intercept = mean_y - slope * mean_y
+  [slope, y_intercept]
 end
 
 
