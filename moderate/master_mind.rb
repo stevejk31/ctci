@@ -14,19 +14,33 @@
 
 
 def master_mind(solution, guess)
-
-
-
+  hits = hit(solution, guess)
+  pseudo_hits = psuedo_hit(solution, guess)
+  "hits: #{hits}\n pseudo hits: #{pseudo_hits}"
 end
 
 
-def hits(solution, guess)
+def hit(solution, guess)
   result = []
   solution.length.times do |idx|
     if solution[idx] == guess[idx]
       result.push(idx)
     end
-    result
   end
+  result
 
+end
+
+def psuedo_hit(solution, guess)
+  sol_hash = Hash.new { |hash, key| hash[key] = Array.new }
+  result = []
+  solution.each_with_index do |val, idx|
+    sol_hash[val].push(idx)
+  end
+  guess.each_with_index do |val, idx|
+    if !sol_hash[val].empty? && !sol_hash[val].include?(idx)
+      result.push(idx)
+    end
+  end
+  result
 end
