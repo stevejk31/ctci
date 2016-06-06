@@ -18,3 +18,15 @@ def master_mind(solution, guess)
 
 
 end
+
+
+def hits(solution, guess)
+  result = []
+  solution.length.times do |idx|
+    if solution[idx] == guess[idx]
+      result.push(idx)
+    end
+    result
+  end
+
+end
