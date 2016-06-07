@@ -14,6 +14,15 @@ def contiguous_sequence(array)
       sum_max = current_sum if current_sum > sum_max
     end
   end
-  
+
+  sum_max
+end
+
+def cont_seq_better(array)
+  sum_max = array.first
+  array.each do |num|
+
+
+  end
   sum_max
 end
