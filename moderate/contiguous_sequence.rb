@@ -6,23 +6,30 @@
 # Output: 5 (i.e., [4,-2,4])
 
 def contiguous_sequence(array)
-  sum_max = array.first
+  max_sum = array.first
   array.each_with_index do |num, idx|
     current_sum = num
     array[(idx+1)..-1].each do |num|
       current_sum += num
-      sum_max = current_sum if current_sum > sum_max
+      max_sum = current_sum if current_sum > max_sum
     end
   end
 
-  sum_max
+  max_sum
 end
 
 def cont_seq_better(array)
-  sum_max = array.first
-  array.each do |num|
-
-
+  p array
+  max_sum = array.first
+  sum = array.first
+  array[1..-1].each do |num|
+    p [num, sum, max_sum]
+    sum += num
+    if max_sum < sum
+      max_sum = sum
+    elsif sum < 0
+      sum = 0
+    end
   end
-  sum_max
+  max_sum
 end
