@@ -9,9 +9,7 @@
 def sub_sort(array)
   left_idx = sorted_left(array)
   right_idx = sorted_right(array)
-  p [left_idx, right_idx]
-  return [left_idx, right_idx] if left_idx == 0 && right_idx == (array.length - 1)
-  p array
+  return [left_idx, right_idx] if left_idx == 0 && right_idx == (array.length - 2)
   left_idx = check_left(left_idx, array)
   right_idx = check_right(right_idx, array)
   [left_idx + 1, right_idx - 1]
