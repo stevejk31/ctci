@@ -19,11 +19,9 @@ def contiguous_sequence(array)
 end
 
 def cont_seq_better(array)
-  p array
   max_sum = array.first
   sum = array.first
   array[1..-1].each do |num|
-    p [num, sum, max_sum]
     sum += num
     if max_sum < sum
       max_sum = sum
