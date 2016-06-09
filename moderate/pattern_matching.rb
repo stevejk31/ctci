@@ -9,8 +9,10 @@
 # output: true
 
 def pattern_brute_force(pattern, value)
-  a_count = count("a", pattern)
-  b_count = count("b", pattern)
+  a_count = count(pattern[0], pattern)
+  b = "b" if pattern[0] == "a"
+  b = "a" if pattern[0] == "b"
+  b_count = count(b, pattern)
   a_length = 1
   while (a_count * a_length) < value.length
     b_length = (value.length - (a_count * a_length))/b_count
@@ -34,9 +36,11 @@ end
 
 def pattern_generator(pattern, a_value, b_value)
   result = ""
+  b = "b" if pattern[0] == "a"
+  b = "a" if pattern[0] == "b"
   pattern.split("").each do |char|
-    result += a_value if char == "a"
-    result += b_value if char == "b"
+    result += a_value if char == pattern[0]
+    result += b_value if char == b
   end
   result
 end
