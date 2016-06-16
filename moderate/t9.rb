@@ -56,10 +56,24 @@ def t9_hash(numbers)
   result
 end
 
-DICTIONARY_TRI = {}
-# tri solution
-def t9_tri(numbers)
-
-
+DICTIONARY_TRIE = {}
+# trie solution
+# breath first search
+def t9_trie(numbers, idx = 0, word = "")
+  if idx == numbers.length
+    if word.length == numbers.length
+      return word
+    else
+      return nil
+    end
+  end
+  words = []
+  letters = NUM_MAP[idx]
+  letters.each do |letter|
+    if DICTIOANRY_TRIE(word+letter)
+      words.push(t9_trie(numbers, idx+1, word+letter))
+    end
+  end
+  words
 
 end
