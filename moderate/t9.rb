@@ -28,17 +28,35 @@ NUM_MAP = {
   8 => ["t","u","v"],
   9 => ["w","x","y","z"]
 }
+DICTIONARY_HASH = {
+  "tree" => true,
+  "used" => true,
+}
 # hash_solution
 def t9_hash(numbers)
   possibility = NUM_MAP[numbers[0].to_i]
   (1...numbers.length).each do |idx|
+    temp = []
     current = NUM_MAP[numbers[idx].to_i]
-
-    p current
+    possibility.map do |word|
+      temp_word = word
+      current.each do |letter|
+        temp.push(word + letter)
+      end
+      possibility = temp
+    end
   end
-  possibility
+  result = []
+  possibility.each do |word|
+    if DICTIONARY_HASH[word]
+      result.push(word)
+    end
+    result
+  end
+  result
 end
 
+DICTIONARY_TRI = {}
 # tri solution
 def t9_tri(numbers)
 
